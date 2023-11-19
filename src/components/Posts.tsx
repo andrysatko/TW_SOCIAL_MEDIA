@@ -2,6 +2,8 @@ import Image from 'next/image'
 import styles from './styles.module.css';
 import Vote from '../../public/vote.svg'
 import Comments from '../../public/comments.svg'
+import { Carousel } from "@material-tailwind/react";
+import { use } from 'react';
 type User = {
     id: number;
     name: string;
@@ -13,7 +15,7 @@ type Props = {
     posts: User[];
 }
 const Users: User[] = [
-    {id:1,name:"test",username:"test",email:"test",Avatars:["https://pbs.twimg.com/profile_images/1631721849385263110/Ucj4sLGL_400x400.jpg"]},
+    {id:1,name:"test",username:"test",email:"test",Avatars:["https://pbs.twimg.com/profile_images/1631721849385263110/Ucj4sLGL_400x400.jpg","https://pbs.twimg.com/profile_images/1631721849385263110/Ucj4sLGL_400x400.jpg"]},
     {id:1,name:"test",username:"test",email:"test",Avatars:["https://pbs.twimg.com/profile_images/1631721849385263110/Ucj4sLGL_400x400.jpg"]}
 ]
 export default function PostsList({posts}:Props){
@@ -24,7 +26,7 @@ return (
             <div className="w-full bg-red-600 h-auto flex flex-col">
                 <div className="flex flex-row justify-between items-center">
                     <div className="flex flex-row">
-                        <div className='w-10 h-10 rounded-full bg-red-950'></div>
+                        <div className='w-10 h-10 rounded-full bg-gray-800'></div>
                         <h4 className='pl-3'>name</h4>
                         <h5 className='pl-2'>last seen</h5>
                     </div>
@@ -37,7 +39,9 @@ return (
                 </div>
             </div>
             <div className={` ${styles.blurBg} h-5/6 w-5/6 bg-black rounded-lg relative`}>
-                <Image className='blur-none z-0' layout='fill' objectFit='contain'   src={user.Avatars[0]}  alt={user.email}></Image>
+            <Carousel className="rounded-xl">
+                {user.Avatars.map((link) => <Image className='blur-none z-0' layout='fill' objectFit='contain'   src={link}  alt={user.email}></Image>)}
+    </Carousel>
             </div>
             <div className="w-5/6 bg-red-600 flex flex-row mt-1">
                 <div className='rounded-xl h-7 w-16 flex flex-row justify-between items-center bg-white '>
