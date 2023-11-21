@@ -1,0 +1,20 @@
+"use client"
+import Image from 'next/image'
+import PostsList from "@/components/Posts";
+import { ThemeProvider } from "@material-tailwind/react";
+
+export default function Posts({posts}:{posts:any[]}) {
+  console.log(posts, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1');
+  return (
+    <div className="flex min-h-screen flex-col items-center min-w-fit">
+      <ThemeProvider>
+        <div className={"md:w-3/4 lg:w-1/2 sm:w-4/5 w-11/12 2xl:w-1/3"}>
+          <PostsList posts={posts}></PostsList>   
+        </div>
+        <div className="bg-red-600 w-48 h-48 lg:w-1/2 md:w-32 sm:w-20">2</div>
+        <div className='w-1/2'>
+        </div>
+        </ThemeProvider>
+    </div>
+  )
+}

@@ -1,19 +1,48 @@
-"use client"
-import Image from 'next/image'
-import PostsList from "@/components/Posts";
-import { ThemeProvider } from "@material-tailwind/react";
+import { getClient } from "../registerApolloClient";
 
-export default function Home() {
+import { gql } from "@apollo/client";
+
+const query = gql`
+query LatestPost {
+  GetPostFo__User(userId:"655208af133bbaa7687252ec") {
+    posts {
+      id
+      image
+      title
+      content
+      Image
+      createdAt
+      author{
+        id
+        firstName
+        Avatar
+        lastName
+      }
+      comments {
+        id
+        postId
+        userId
+        text
+        createdAt
+        updatedAt
+      }
+      Likes
+      Dislikes
+    }
+    Post_count
+  }
+}
+`;
+export const revalidate = 20
+import Posts from '../components/page';
+
+export default async function Home() {
+  console.log('BEFORE!!!!!!')
+  const { data, error } = await getClient().query({ query });
+  console.log(data.GetPostFo__User.posts,error);
   return (
-    <main className="flex min-h-screen flex-col items-center min-w-fit">
-      <ThemeProvider>
-        <div className={"md:w-3/4 lg:w-1/2 sm:w-4/5 w-11/12 2xl:w-1/3"}>
-          <PostsList posts={[]}></PostsList>
-        </div>
-        <div className="bg-red-600 w-48 h-48 lg:w-1/2 md:w-32 sm:w-20">2</div>
-        <div className='w-1/2'>
-        </div>
-        </ThemeProvider>
+    <main>
+     <Posts posts={data.GetPostFo__User.posts}></Posts>
     </main>
   )
 }
