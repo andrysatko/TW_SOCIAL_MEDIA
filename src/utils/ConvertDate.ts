@@ -8,5 +8,3 @@ export function ReleasedTime(MDate:string):string{
        }
     return hours > 24? Number.parseFloat((hours/24).toString()).toFixed(0)+ " days ago" : Number.parseFloat(hours.toString()).toFixed(0) + " hours ago"
 }
-    
-    
