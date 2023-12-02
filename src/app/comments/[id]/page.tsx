@@ -37,7 +37,7 @@ const query_PostById = gql`query PostById($PostId: String!){
   }
 }`
 
-export default function Comments({ params: { id } }: Props) {
+export default function Page({ params: { id } }: Props) {
   const DisplayLoad = ()=> Array.from({ length: 6 }).map((_, index) => (<CommentLoader key={index} />))
   const [comments, setPosts] = useState<PostComment[]>([])
   const [isRefetching,setRefetching] = useState<boolean>(false)

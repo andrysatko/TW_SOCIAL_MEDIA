@@ -1,6 +1,6 @@
-import { getClient } from "../Apollo/registerApolloClient";
+import { getClient } from "../../Apollo/registerApolloClient";
 import { gql } from "@apollo/client";
-import PostsList from '../components/PostList'
+import PostsList from '../../components/PostList'
 const query = gql`
 query LatestPost {
   GetPostFo__User(userId:"655208af133bbaa7687252ec") {
@@ -32,10 +32,10 @@ query LatestPost {
   }
 }
 `;
-export const revalidate = 20
+// export const revalidate = 20
 
 
-export default async function Home() {
+export default async function Page() {
   const { data, error, loading } = await getClient().query({ query });
   return (
     <main>

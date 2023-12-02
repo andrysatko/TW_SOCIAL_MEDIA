@@ -11,7 +11,7 @@ export default function Post({post}:Props){
     return (
         <div>
         <Link href={"post/id"}>
-            <div key={post.id} style={{ height: "500px" }} className={" bg-white rounded-lg border-solid border-2 border-black row-span-2 flex flex-col items-center p-3"}>
+            <div key={post.id} style={{ height: "500px" }} className={"bg-white rounded-lg border-solid border-2 border-black row-span-2 flex flex-col items-center p-3"}>
                 <div className="w-full bg-red-600 h-auto flex flex-col">
                     <div className="flex flex-row  items-center">
                         <div className="p flex flex-row">
