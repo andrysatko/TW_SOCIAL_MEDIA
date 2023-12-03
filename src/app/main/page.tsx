@@ -32,14 +32,13 @@ query LatestPost {
   }
 }
 `;
-// export const revalidate = 20
-
+export const revalidate = 20
 
 export default async function Page() {
   const { data, error, loading } = await getClient().query({ query });
   return (
     <main>
-      <div className="flex min-h-screen flex-col items-center min-w-fit">
+      <div className="flex min-h-screen flex-col items-center min-w-fit bg-white mt-3">
         <div className={"md:w-3/4 lg:w-1/2 sm:w-4/5 w-11/12 2xl:w-1/3"}>
           <PostsList posts={data.GetPostFo__User.posts}></PostsList>
         </div>

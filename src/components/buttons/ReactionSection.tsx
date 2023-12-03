@@ -49,7 +49,7 @@ export default function ReactionSection({ initialCount, postId }: { postId: stri
                 <Image src={Vote} alt="vote" width={23} height={23}></Image>
             </button>
             {reactoinCount}
-            <button className={`rounded-full hover:bg-gray-200 ${MyVote==Reaction.dislike?'bg-orange-300':''}`} onClick={e => {PerformVoteEvent(e,Reaction.dislike)}}>
+            <button className={`rounded-full hover:bg-gray-200 ${MyVote==Reaction.dislike?'bg-red-200':''}`} onClick={e => {PerformVoteEvent(e,Reaction.dislike)}}>
                 <Image className='rotate-180' src={Vote} alt="vote" width={23} height={23}></Image>
             </button>
         </div>

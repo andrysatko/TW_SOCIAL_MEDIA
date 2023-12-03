@@ -1,19 +1,27 @@
 export default function PostLoader() {
     return (
-        <div style={{ height: "500px" }} className="mt-3 h-auto  flex flex-col w-4/5 border-t-2 border-b-2  shadow  mx-auto bg-white rounded-lg border-solid border-2 border-black row-span-2  items-center p-3">
-            <div className="animate-pulse flex space-x-4">
-                <div className="rounded-full bg-gray-500 h-14 w-14"></div>
-                <div className="flex-1 space-y-6 py-1">
-                    <div className="h-2 bg-slate-200 rounded"></div>
-                    <div className="space-y-3">
-                        <div className="grid grid-cols-3 gap-4">
-                            <div className="h-2 bg-gray-500 rounded col-span-2"></div>
-                            <div className="h-2 bg-gray-500 rounded col-span-1"></div>
+        <div>
+            <div style={{ height: "500px" }} className={"animate-pulse shadow-lg rounded-lg border-separate bg-gray-100  row-span-2 flex flex-col items-center p-3"}>
+                <div className="w-full  h-auto flex flex-col rounded-md border">
+                    <div className="flex flex-row  items-center">
+                        <div className="p flex flex-row">
+                            <div className='w-10 h-10 rounded-full bg-gray-500' />
+                            <div className="flex flex-row">
+                                <div className="h-2 w-20 bg-gray-500 rounded col-span-2"></div>
+                                <div className="ml-2 h-2 w-14 bg-gray-500 rounded col-span-1"></div>
+                            </div>
                         </div>
-                        <div className="h-2 bg-gray-500 rounded"></div>
                     </div>
+                    <div className="mt-2 mb-2 ml-2 h-2 w-full bg-gray-500 rounded col-span-1"></div>
+                </div>
+                <div style={{ height: "500px" }} className={`max-h-[100vw] h-full w-full object-contain overflow-hidden  bg-gray-500 rounded-lg relative`}>
+                </div>
+                <div className="w-5/6  bg-white flex flex-row mt-1 rounded-md border">
                 </div>
             </div>
         </div>
     )
 }
+
+
+
