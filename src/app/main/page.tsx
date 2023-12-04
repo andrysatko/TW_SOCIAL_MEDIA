@@ -6,7 +6,6 @@ query LatestPost {
   GetPostFo__User(userId:"655208af133bbaa7687252ec") {
     posts {
       id
-      image
       title
       content
       Image
@@ -17,13 +16,8 @@ query LatestPost {
         Avatar
         lastName
       }
-      comments {
-        id
-        postId
-        userId
-        text
-        createdAt
-        updatedAt
+      _count{
+        comments
       }
       Likes
       Dislikes

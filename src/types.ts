@@ -1,9 +1,9 @@
 type User = {
-    id:string,
-    createdAt:string,
-    firstName:string,
-    lastName:string,
-    Avatar:string[]
+    id: string,
+    createdAt: string,
+    firstName: string,
+    lastName: string,
+    Avatar: string[]
 }
 type Post = {
     id: string,
@@ -13,7 +13,9 @@ type Post = {
     Image: string[]
     Likes: number,
     Dislikes: number
-    comments: string[]
+    _count: {
+        comments: number,
+    },
     createdAt: string
 }
 type RealProps = {
@@ -21,12 +23,12 @@ type RealProps = {
 }
 
 type PostComment = {
-    id:string,
-    createdAt:string,
-    text:string,
-    User:User,
-    Reply:Reply
-  }
+    id: string,
+    createdAt: string,
+    text: string,
+    User: User,
+    Reply: Reply
+}
 type Reply = any
 
 enum Reaction {

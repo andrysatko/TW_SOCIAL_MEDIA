@@ -1,6 +1,7 @@
 import Logo from '../../../public/logo.svg'
 import Name from '../../../public/name.svg'
 import Image from 'next/image';
+import LoginModal from "@/components/Modals/LogInModal";
 export default function NavBar() {
     return (
         <div className=" w-full h-1/4 border border-gray-400 shadow-md flex justify-between flex-row items-center pb-2 pt-2 rounded-xl">
@@ -18,7 +19,7 @@ export default function NavBar() {
                     <input type="search" className="outline-none block h-9 w-full  ps-10 text-sm text-gray-900 border border-gray-500 rounded-2xl bg-gray-50 " placeholder="Search..." />
                 </div>
             </div>
-            <button className="mr-3 pl-3 pr-3 h-9  rounded-2xl border border-black bg-orange-700 hover:bg-orange-800 text-white text-xs sm:text-sm md:text-lg lg:text-xl">Log In</button>
+            <LoginModal></LoginModal>
         </div>
     )
 }

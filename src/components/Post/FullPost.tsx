@@ -7,11 +7,10 @@ import ReactionSection from "../buttons/ReactionSection";
 type Props = {
     post: Post
 }
-export default function Post({post}:Props){
+export default function FullPost({ post }: Props) {
     return (
         <div>
-        <Link href={"post/id"}>
-            <div key={post.id} style={{ height: "500px" }} className={"bg-white shadow-lg rounded-lg border-separate border-t border-b hover:bg-gray-100 border-black row-span-2 flex flex-col items-center p-3"}>
+            <div key={post.id} className={"bg-white shadow-lg rounded-lg border-separate border-t border-b row-span-2 flex flex-col items-center p-3 h-auto"}>
                 <div className="w-full  h-auto flex flex-col rounded-md border">
                     <div className="flex flex-row  items-center">
                         <div className="p flex flex-row">
@@ -26,20 +25,22 @@ export default function Post({post}:Props){
                         <h1 className='text-xl font-sans font-semibold'>{post.title}</h1>
                     </div>
                 </div>
-                <div className={`max-h-[100vw] h-full w-full object-contain overflow-hidden  bg-black rounded-lg relative`}>
+                <div style={{ height: "500px" }} className={`min-h-[400px] h-auto w-full object-contain overflow-hidden  bg-black rounded-lg relative`}>
                     <Custom_Carousel Image={post.Image}></Custom_Carousel>
                 </div>
-                <div className="w-5/6  bg-white flex flex-row mt-1 rounded-md border">
+                <div className="h-auto w-full bg-red-300 text-ellipsis overflow-hidden ...">
+                    <p >
+                        {post.content.repeat(20)}
+                    </p>
+                </div>
+                <div className="w-full  bg-white flex flex-row mt-1 rounded-md border">
                     <ReactionSection postId={post.id} initialCount={post.Likes - post.Dislikes}></ReactionSection>
-                    <Link href={`comments/${post.id}`}>
                     <button className='ml-7  rounded-xl h-7 w-16 flex flex-row  items-center  hover:bg-gray-200'>
                         <Image className='rounded-full' src={Comments} alt="comments" width={23} height={23}></Image>
                         {post._count.comments}
                     </button>
-                    </Link>
                 </div>
             </div>
-        </Link>
-    </div>
+        </div>
     )
 }
