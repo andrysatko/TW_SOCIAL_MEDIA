@@ -1,17 +1,24 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import {
     Button,
     Dialog,
     DialogHeader,
     DialogBody,
     DialogFooter,
-    ThemeProvider
+    ThemeProvider,
+    input
 } from "@material-tailwind/react";
-export default function LoginModal() {
-    const [open, setOpen] = React.useState(false);
+import Input from "../inputs/Input";
+import { setModalView } from "@/redux/features/motalViewSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import LoginBody from "./LoginBody";
 
-    const handleOpen = () => setOpen(!open);
+
+export default function LoginModal() {
+    const { open, view } = useAppSelector((state) => state.modalView);
+    const dispatch = useAppDispatch();
+    const handleOpen = () => dispatch(setModalView({ open: !open }))
 
     return (
         <>
@@ -19,29 +26,18 @@ export default function LoginModal() {
                 Log In
             </button>
             <ThemeProvider>
-            <Dialog open={open} handler={handleOpen}>
-                <DialogHeader>Its a simple dialog.</DialogHeader>
-                <DialogBody>
-                    The key to more success is to have a lot of pillows. Put it this way,
-                    it took me twenty five years to get these plants, twenty five years of
-                    blood sweat and tears, and I&apos;m never giving up, I&apos;m just
-                    getting started. I&apos;m up to something. Fan luv.
-                </DialogBody>
-                <DialogFooter>
-                    <Button
-                        variant="text"
-                        color="red"
-                        onClick={handleOpen}
-                        className="mr-1"
-                    >
-                        <span>Cancel</span>
-                    </Button>
-                    <Button variant="gradient" color="green" onClick={handleOpen}>
-                        <span>Confirm</span>
-                    </Button>
-                </DialogFooter>
-            </Dialog>
+                <Dialog open={open} handler={handleOpen} className="h-2/3 flex flex-col items-center w-1/2 lg:w-1/4">
+                    <DialogHeader>
+                        {view === "login" && "Login"}
+                        {view === "signup" && "Sign Up"}
+                        {view === "resetPassword" && "Reset Password"}
+                    </DialogHeader>
+                    {view === "login" && <LoginBody handleOpen={handleOpen}></LoginBody>}
+                </Dialog>
             </ThemeProvider>
         </>
     );
 }
+
+
+
