@@ -2,7 +2,7 @@
 import Image from "next/image"
 import Vote from '../../../public/vote.svg'
 import { getClient } from "../../Apollo/registerApolloClient";
-import { gql, useMutation } from "@apollo/client";
+import { ApolloError, gql, useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr"
 import { useEffect, useState, MouseEvent } from "react";
 import { setModalView } from "@/redux/features/motalViewSlice";
@@ -32,30 +32,27 @@ export default function ReactionSection({ initialCount, postId }: { postId: stri
     }, [data])
     const [mutateReaction, _] = useMutation(query, { variables: { PostId: postId } });
     const PerformVoteEvent = async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, vote: Reaction) => {
-        try {
-            e.preventDefault()
-            e.stopPropagation()
-            if (MyVote !== vote) {
-                console.log("🍟🍟🍔🍔")
-                const { data,errors } = await mutateReaction({ variables: { reaction: vote } });
-                if (errors) {
-                    console.log("🌭🍟🍟🥓🧂")
-                    
-                }
-                SetMyVote(vote);
-                if (vote === Reaction.like) {
-                    if (reactoinCount == -1) { setReactionCount(reactoinCount + 2); return }
-                    setReactionCount(reactoinCount + 1)
-                }
-                if (vote === Reaction.dislike) {
-                    if (reactoinCount == 1) { setReactionCount(reactoinCount - 2); return }
-                    setReactionCount(reactoinCount - 1)
+
+        e.preventDefault()
+        e.stopPropagation()
+        if (MyVote !== vote) {
+            if (vote === Reaction.like) {
+                if (reactoinCount == -1) { setReactionCount(reactoinCount + 2); return }
+                setReactionCount(reactoinCount + 1)
+            }
+            if (vote === Reaction.dislike) {
+                if (reactoinCount == 1) { setReactionCount(reactoinCount - 2); return }
+                setReactionCount(reactoinCount - 1)
+            }
+            SetMyVote(vote);
+            try {
+                await mutateReaction({ variables: { reaction: vote } });
+            } catch (error) {
+                if (error instanceof ApolloError && error.graphQLErrors[0].message==="Unauthorized") {
+                    dispatch(setModalView({ open: true, view: "login" }))
                 }
             }
-        } catch (error) {
-            dispatch(setModalView({ open: true }))
         }
-
     }
     return (
         <div className='rounded-xl h-7 w-16 flex flex-row justify-between items-center bg-white '>

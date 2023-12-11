@@ -33,7 +33,7 @@ const Input = ({ size, type, placeholder, disabled, onChange, ...props }:Props) 
 
   return (
     <input
-      className={`${getClassName()} ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''}`}
+      className={`${getClassName()} ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''} text-black`}
       type={type}
       placeholder={placeholder}
       disabled={disabled}

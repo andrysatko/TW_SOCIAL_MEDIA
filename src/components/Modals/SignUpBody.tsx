@@ -12,20 +12,21 @@ import Input from "../inputs/Input";
 import { useState } from "react";
 import { ApolloError, gql, useMutation } from "@apollo/client";
 const query = gql`
-mutation LogIn($email:String! , $password:String!){
-    login(email:$email,password:$password){
-      jwt_token
+mutation SignUp($email:String! , $password:String!){
+    signUp(email:$email,password:$password){
+      id
     }
   }
 `;
-export default function LoginBody({ handleOpen }) {
+export default function SignUpBody({ handleOpen }) {
     const [loginForm, setLoginForm] = useState({
         email: "",
         password: "",
+        confirm_password: "",
     });
     const [errorMessages, setErrorMessages] = useState<string | undefined>(undefined);
     const [mutateCallBack, _] = useMutation(query, { variables: loginForm });
-    const performLogin = async () => {
+    const perFormSignUp = async () => {
         try {
             const { data, errors } = await mutateCallBack()
             if (data) {

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import LoginModal from "@/components/Modals/LogInModal";
 export default function NavBar() {
     return (
-        <div className=" w-full h-1/4 border border-gray-400 shadow-md flex justify-between flex-row items-center pb-2 pt-2 rounded-xl">
+        <div className=" w-full h-16 border border-gray-400 shadow-md flex justify-between flex-row items-center pb-2 pt-2 rounded-xl">
             <div className="ml-2 flex flex-row">
                 <Image src={Logo}></Image>
                 <Image src={Name} width={34}></Image>
