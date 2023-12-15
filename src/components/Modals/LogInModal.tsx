@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import LoginBody from "./LoginBody";
 import CloseModalSvg from "../../../public/close.svg";
 import Image from "next/image"
+import SignUpBody from "./SignUpBody";
 export default function LoginModal() {
     const { open, view } = useAppSelector((state) => state.modalView);
     const dispatch = useAppDispatch();
@@ -39,7 +40,16 @@ export default function LoginModal() {
                             {view === "resetPassword" && "Reset Password"}
                         </div>
                     </DialogHeader>
-                    {view === "login" && <LoginBody handleOpen={handleOpen}></LoginBody>}
+                    <DialogBody className="w-5/6 text-center">
+                        By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.
+                        <div className="flex flex-row w-full items-center justify-between text-center">
+                            <hr className="w-full border-t border-gray-500 my-8" />
+                            <p className="w-24">OR</p>
+                            <hr className="w-full border-t border-gray-500 my-8" />
+                        </div>
+                        {view === "login" && <LoginBody handleOpen={handleOpen}></LoginBody>}
+                        {view === "signup" && <SignUpBody handleOpen={handleOpen}></SignUpBody>}
+                    </DialogBody>
                     <DialogFooter className="w-5/6 flex-col items-center">
                         <div className="flex flex-row">
                             {view === "login" && <>New to Reddit?  <button className="text-orange-500 hover:text-orange-900" onClick={() => { dispatch(setModalView({ view: "signup" })) }}>Sign up</button></>}

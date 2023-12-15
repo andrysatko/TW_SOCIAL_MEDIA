@@ -11,6 +11,7 @@ type Post = {
     content: string,
     author: User,
     Image: string[]
+    Video?: string
     Likes: number,
     Dislikes: number
     _count: {

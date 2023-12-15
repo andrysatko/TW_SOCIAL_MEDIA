@@ -27,7 +27,12 @@ export default function Post({post}:Props){
                     </div>
                 </div>
                 <div className={`max-h-[100vw] h-full w-full object-contain overflow-hidden  bg-black rounded-lg relative`}>
-                    <Custom_Carousel Image={post.Image}></Custom_Carousel>
+                   { post.Video !==null && 
+                        <video className="w-full h-full object-contain" autoPlay loop muted controls>
+                            <source src={post.Video} type="video/mp4" />
+                        </video>}
+                    
+                    {post.Image!==undefined && <Custom_Carousel Image={post.Image}></Custom_Carousel>}
                 </div>
                 <div className="w-5/6  bg-white flex flex-row mt-1 rounded-md border">
                     <ReactionSection postId={post.id} initialCount={post.Likes - post.Dislikes}></ReactionSection>

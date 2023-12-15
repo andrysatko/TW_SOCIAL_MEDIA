@@ -1,21 +1,19 @@
 import { type } from 'os';
 import React, { useState } from 'react';
 
-type Props = { 
-    size : 'sm' | 'md' | 'lg';
-    type : 'text' | 'password' | 'email' | 'number';
-    placeholder : string;
-    disabled : boolean;
-    onChange : (value : string) => void;
+type Props = {
+  size: 'sm' | 'md' | 'lg';
+  type: 'text' | 'password' | 'email' | 'number';
+  placeholder: string;
+  disabled: boolean;
+  onChange: (value: string) => void;
 }
-const Input = ({ size, type, placeholder, disabled, onChange, ...props }:Props) => {
+const Input = ({ size, type, placeholder, disabled, onChange, ...props }: Props) => {
   const [value, setValue] = useState('');
 
-  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    if (onChange) {
-      onChange(event.target.value);
-    }
+    onChange(event.target.value);
   };
 
   const getClassName = () => {
