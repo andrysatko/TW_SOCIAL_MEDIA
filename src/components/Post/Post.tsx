@@ -4,14 +4,14 @@ import Custom_Carousel from "../Carousel";
 import { ReleasedTime } from "@/utils/ConvertDate";
 import Comments from '../../../public/comments.svg'
 import ReactionSection from "../buttons/ReactionSection";
+import CommentDescription from "./PostDescription";
 type Props = {
     post: Post
 }
 export default function Post({post}:Props){
     return (
         <div>
-        <Link href={"post/id"}>
-            <div key={post.id} style={{ height: "500px" }} className={"bg-white shadow-lg rounded-lg border-separate border-t border-b hover:bg-gray-100 border-black row-span-2 flex flex-col items-center p-3"}>
+            <div key={post.id} className={"bg-white shadow-lg rounded-lg border-separate border-t border-b hover:bg-gray-100 border-black row-span-2 flex flex-col items-center p-3"}>
                 <div className="w-full  h-auto flex flex-col rounded-md border">
                     <div className="flex flex-row  items-center">
                         <div className="p flex flex-row">
@@ -26,14 +26,15 @@ export default function Post({post}:Props){
                         <h1 className='text-xl font-sans font-semibold'>{post.title}</h1>
                     </div>
                 </div>
-                <div className={`max-h-[100vw] h-full w-full object-contain overflow-hidden  bg-black rounded-lg relative`}>
-                   { post.Video !==null && 
-                        <video className="w-full h-full object-contain" autoPlay loop muted controls>
+                {(post.Image.length > 0 || post.Video) && <div style={{ height: "400px" }} className={`max-h-[100vw] w-full object-contain overflow-hidden  bg-black rounded-lg relative`}>
+                   {  post.Video !==null && 
+                        <video className="w-full h-full object-contain"  muted controls>
                             <source src={post.Video} type="video/mp4" />
                         </video>}
                     
-                    {post.Image!==undefined && <Custom_Carousel Image={post.Image}></Custom_Carousel>}
-                </div>
+                    {post.Image.length>0 && <Custom_Carousel Image={post.Image}></Custom_Carousel>}
+                </div>}
+                <CommentDescription text={post.content.repeat(20)}></CommentDescription>
                 <div className="w-5/6  bg-white flex flex-row mt-1 rounded-md border">
                     <ReactionSection postId={post.id} initialCount={post.Likes - post.Dislikes}></ReactionSection>
                     <Link href={`comments/${post.id}`}>
@@ -44,7 +45,6 @@ export default function Post({post}:Props){
                     </Link>
                 </div>
             </div>
-        </Link>
     </div>
     )
 }
