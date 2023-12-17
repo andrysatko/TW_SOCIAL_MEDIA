@@ -16,7 +16,7 @@ export default function Post({post}:Props){
                     <div className="flex flex-row  items-center">
                         <div className="p flex flex-row">
                             <Link className='box-content' href={`user/${post.author.id}`}>
-                                <img className='w-10 h-10 rounded-full' src={"http://localhost:3000/static/" + post.author?.Avatar[post.author?.Avatar.length - 1]} alt="" />
+                                <img className='w-10 h-10 rounded-full' src={post.author?.Avatar[post.author?.Avatar.length - 1]} alt="" />
                             </Link>
                             <h4 className='pl-3 font-semibold'>{post.author.firstName} {post.author.lastName}</h4>
                             <h5 className='pl-2 text-xs pt-1'>•{ReleasedTime(post.createdAt)}</h5>
@@ -26,15 +26,15 @@ export default function Post({post}:Props){
                         <h1 className='text-xl font-sans font-semibold'>{post.title}</h1>
                     </div>
                 </div>
-                {(post.Image.length > 0 || post.Video) && <div style={{ height: "400px" }} className={`max-h-[100vw] w-full object-contain overflow-hidden  bg-black rounded-lg relative`}>
+                {(post.Image.length > 0 || post.Video) && <div style={{ height: "400px" }} className={`max-h-[100vw] w-full object-contain overflow-hidden  bg-transparent rounded-lg relative`}>
                    {  post.Video !==null && 
-                        <video className="w-full h-full object-contain"  muted controls>
+                        <video className="w-full h-full object-contain bg-black" autoPlay  muted controls>
                             <source src={post.Video} type="video/mp4" />
                         </video>}
                     
                     {post.Image.length>0 && <Custom_Carousel Image={post.Image}></Custom_Carousel>}
                 </div>}
-                <CommentDescription text={post.content.repeat(20)}></CommentDescription>
+                <CommentDescription text={post.content.repeat(5)}></CommentDescription>
                 <div className="w-5/6  bg-white flex flex-row mt-1 rounded-md border">
                     <ReactionSection postId={post.id} initialCount={post.Likes - post.Dislikes}></ReactionSection>
                     <Link href={`comments/${post.id}`}>

@@ -1,36 +1,13 @@
 import { getClient } from "../../Apollo/registerApolloClient";
 import { gql } from "@apollo/client";
 import PostsList from '../../components/PostList'
-const query = gql`
-query GetPost_Filter{
-  GetPost_Filter(FilterBy:RECENT){
-   posts {
-      id
-      title
-      content
-      Image
-      Video
-      createdAt
-      author{
-        id
-        firstName
-        Avatar
-        lastName
-      }
-      _count{
-        comments
-      }
-      Likes
-      Dislikes
-    }
-    Post_count
-  }
-}
-`;
+import { GetPost_Filter, Variables_GetPost_Filter, Return_GetPost_Filter, TFilterByEnum } from "../../GQL/gql";
 export const revalidate = 20
 
 export default async function Page() {
-  const { data, error, loading } = await getClient().query({ query });
+  const { data, error, loading } = await getClient().query<Return_GetPost_Filter, Variables_GetPost_Filter>(
+    { query: GetPost_Filter, variables: { filterBy: TFilterByEnum.resent } }
+    );
   return (
     <main>
       <div className="flex min-h-screen flex-col items-center min-w-fit bg-white mt-3">

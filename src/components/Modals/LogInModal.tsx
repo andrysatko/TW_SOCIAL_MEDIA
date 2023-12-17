@@ -27,7 +27,7 @@ export default function LoginModal() {
                 Log In
             </button>
             <ThemeProvider>
-                <Dialog open={open} handler={handleOpen} className="h-5/6 w-full md:w-2/3 md:h-5/6 lg:h-5/6 lg:w-1/2  flex flex-col items-center">
+                <Dialog style={{minHeight:"500px"}} open={open} handler={handleOpen} className="h-5/6 w-full md:w-2/3 md:h-4/5 lg:h-4/5 lg:w-1/2  flex flex-col items-center ">
                     <DialogHeader className="flex flex-col w-full">
                         <div className="flex flex-row-reverse w-full">
                             <button className="h-10 w-10 rounded-full bg-gray-400 hover:bg-gray-300 flex justify-center items-center" onClick={handleOpen}>
