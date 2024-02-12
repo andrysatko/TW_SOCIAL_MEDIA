@@ -16,17 +16,12 @@ export default function PostsList({ posts }: RealProps) {
     }
     useEffect(() => {
         if(data){
-            console.log("😎")
-            console.log(s_posts.at(-1)?.id)
             setPosts([...s_posts, ...(data ? data.GetPost_Filter.posts :[])])
-            console.log(s_posts.at(-1)?.id)
-            console.log("😎")
         }   
     }, [data])
     useEffect(() => {
         const handleScroll: () => void = () => {
-          if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-            console.log('Scrolled to the end of the page!');
+          if (window.innerHeight + window.scrollY >= document.body.offsetHeight-1) {
             loadmore();
           }
         };

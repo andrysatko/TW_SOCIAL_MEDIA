@@ -12,7 +12,7 @@ export default function Post({post}:Props){
     return (
         <div>
             <div key={post.id} className={"bg-white shadow-lg rounded-lg border-separate border-t border-b hover:bg-gray-100 border-black row-span-2 flex flex-col items-center p-3"}>
-                <div className="w-full  h-auto flex flex-col rounded-md border">
+                <div className="w-full  h-auto flex flex-col rounded-md">
                     <div className="flex flex-row  items-center">
                         <div className="p flex flex-row">
                             <Link className='box-content' href={`user/${post.author.id}`}>
@@ -35,7 +35,7 @@ export default function Post({post}:Props){
                     {post.Image.length>0 && <Custom_Carousel Image={post.Image}></Custom_Carousel>}
                 </div>}
                 <CommentDescription text={post.content.repeat(5)}></CommentDescription>
-                <div className="w-5/6  bg-white flex flex-row mt-1 rounded-md border">
+                <div className="w-5/6 flex flex-row mt-1 rounded-md">
                     <ReactionSection postId={post.id} initialCount={post.Likes - post.Dislikes}></ReactionSection>
                     <Link href={`comments/${post.id}`}>
                     <button className='ml-7  rounded-xl h-7 w-16 flex flex-row  items-center  hover:bg-gray-200'>
